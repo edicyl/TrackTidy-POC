@@ -1,4 +1,4 @@
-# 🎵 TrackTidy - An all-in-one DJ Music Manager (POC)
+# 🎵 TrackTidy - All-in-One DJ Music Manager (POC)
 
 TrackTidy is a **command-line tool** for managing your music files. It allows you to:
 - ✅ **Edit metadata** (song title, artist, album, track number)
@@ -42,7 +42,7 @@ python metadata_editor.py
 
 ---
 
-## 🛠 Features in Development
+## 🛠 Future Development
 - 🎨 **Cover Art Fetching & Management**
 - 📁 **Batch Processing for Bulk Conversions**
 - 🔍 **Automatic Audio File Organization**
