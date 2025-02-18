@@ -3,7 +3,7 @@
 TrackTidy is a **command-line tool** for managing your music files. It allows you to:
 - ✅ **Edit metadata** (song title, artist, album, track number)
 - ✅ **Convert audio files** between formats (MP3, WAV, FLAC, AAC, OGG)
-- ✅ **Fetch and apply cover art** (coming soon!)
+- ✅ **Fetch and apply cover art**
 
 ---
 
@@ -20,14 +20,6 @@ pip install rich mutagen
 TrackTidy uses **FFmpeg** for audio conversion. Install it:
 
 - **Windows**: [Download FFmpeg](https://ffmpeg.org/download.html) and add it to `PATH`.
-- **Linux (Ubuntu/Debian)**:
-  ```sh
-  sudo apt install ffmpeg
-  ```
-- **Mac (Homebrew)**:
-  ```sh
-  brew install ffmpeg
-  ```
 
 ---
 
@@ -58,6 +50,6 @@ python metadata_editor.py
 ---
 
 ## 📜 License
-TrackTidy is an open-source project. Feel free to modify and contribute!
+TrackTidy is an open-source project. Feel free to modify and contribute.
 
 ---
