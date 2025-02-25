@@ -103,4 +103,5 @@ async def convert_audio():
     except Exception as e:
         console.print(f"[bold #f38ba8]❌ Error:[/bold #f38ba8] {e}")
 
-asyncio.run(convert_audio())
+if __name__ == "__main__":
+    asyncio.run(convert_audio())
