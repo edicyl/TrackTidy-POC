@@ -34,7 +34,12 @@ async def convert_audio():
     console.print("\n[bold #f5e0dc]🎵 TrackTidy Audio Converter 🎵[/bold #f5e0dc]\n")
 
     # Get file path
-    file_path = Prompt.ask("[#89dceb]Enter the path of the audio file to convert[/#89dceb]").strip()
+    while True:
+        file_path = Prompt.ask("[#89dceb]Enter the path of the audio file to convert[/#89dceb]").strip()
+        if not os.path.isfile(file_path):
+            console.print("[bold #f38ba8]❌ Error: File not found! Try again.[/bold #f38ba8]")
+            continue
+        break
 
     if not os.path.isfile(file_path):
         console.print("[bold #f38ba8]❌ Error:[/bold #f38ba8] File not found!")
@@ -54,12 +59,13 @@ async def convert_audio():
             f"[#94e2d5]📂 Detected file format:[/#94e2d5] [bold #89b4fa]{file_extension.upper()}[/bold #89b4fa]")
 
     # Ask for output format (limited options)
-    output_format = Prompt.ask("[#cba6f7]Enter the output format (mp3, wav, flac, aac, ogg)[/#cba6f7]").strip().lower()
-
     valid_formats = ["mp3", "wav", "flac", "aac", "ogg"]
-    if output_format not in valid_formats:
-        console.print("[bold #f38ba8]❌ Error:[/bold #f38ba8] Unsupported format!")
-        return
+    while True:
+        output_format = Prompt.ask("[#cba6f7]Enter the output format (mp3, wav, flac, aac, ogg)[/#cba6f7]").strip().lower()
+        if output_format not in valid_formats:
+            console.print("[bold #f38ba8]❌ Error:[/bold #f38ba8] Unsupported format!")
+            continue
+        break
 
     output_file = os.path.splitext(file_path)[0] + f".{output_format}"
     output_file = os.path.abspath(output_file)
@@ -99,6 +105,9 @@ async def convert_audio():
                 f"[bold #a6e3a1]✅ Conversion successful![/bold #a6e3a1] [#f9e2af]Saved as:[/#f9e2af] {output_file}")
         else:
             console.print(f"[bold #f38ba8]❌ Error during conversion:[/bold #f38ba8] Check FFmpeg logs.")
+
+        # Pause before returning to the menu
+        Prompt.ask("\n[#89b4fa]Press Enter to return to the main menu...[/#89b4fa]")
 
     except Exception as e:
         console.print(f"[bold #f38ba8]❌ Error:[/bold #f38ba8] {e}")

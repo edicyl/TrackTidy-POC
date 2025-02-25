@@ -1,3 +1,5 @@
+import os
+
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
 from rich.console import Console
@@ -5,12 +7,16 @@ from rich.prompt import Prompt
 
 console = Console()
 
-
 async def edit_metadata():
     console.print("\n[bold #f5e0dc]🎵 TrackTidy - Metadata Editor 🎵[/bold #f5e0dc]")
 
-    # Ask for the file path instead of using a hardcoded one
-    file_path = Prompt.ask("[#89dceb]Enter the path to the MP3 file[/#89dceb]").strip()
+    # Ask for the file path
+    while True:
+        file_path = Prompt.ask("[#89dceb]Enter the path to the MP3 file[/#89dceb]").strip()
+        if not os.path.isfile(file_path):
+            console.print("[bold #f38ba8]❌ Error: File not found! Please enter a valid file path.[/bold #f38ba8]")
+            continue
+        break
 
     try:
         # Load the MP3 file and define metadata fields
@@ -40,6 +46,9 @@ async def edit_metadata():
         for field in metadata_fields:
             value = audio.get(field, ["[Not Set]"])
             console.print(f"[#94e2d5]{field.capitalize()}[/#94e2d5]: {', '.join(value)}")
+
+        # Pause before returning to the menu
+        Prompt.ask("\n[#89b4fa]Press Enter to return to the main menu...[/#89b4fa]")
 
     except Exception as e:
         console.print(f"[bold #f38ba8]❌ Error:[/bold #f38ba8] {e}")
